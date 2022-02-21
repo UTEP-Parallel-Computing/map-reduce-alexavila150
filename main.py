@@ -21,8 +21,8 @@ def main(thread_num = 1):
     for word in WORDS:
         global_result[word] = 0
 
+    #splittings
     with pymp.Parallel(thread_num) as p:
-        #splitting
         local_result = dict()
         for word in WORDS:
             local_result[word] = 0
@@ -42,10 +42,17 @@ def main(thread_num = 1):
     print(global_result)
 
 
-
-for i in [1,2,3,4,5,6,7,8]:
+durations = []
+threads = []
+for i in range(1, 17):
     time1 = time.time()
     main(i)
     time2 = time.time()
-    print('duration:', time2 - time1)
+    duration = time2 - time1
+    print('duration:', duration)
     print('thread_num:', i)
+    durations.append(duration)
+    threads.append(i)
+
+print(durations)
+print(threads)
