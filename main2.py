@@ -5,6 +5,7 @@ import pymp
 import time
 import math
 
+
 # get the world communicator
 comm = MPI.COMM_WORLD
 
@@ -40,11 +41,12 @@ for word in WORDS:
 files = []
 #splitting
 if rank is 0:
+    time1 = time.time()
     print('Thread 0 distributing work')
     slices = split(FILES, size - 1)
     for i, slice in enumerate(slices):
-        print(slice)
-        comm.send(slice, dest=i + 0, tag=42)
+        print(slice, flush=True)
+        comm.send(slice, dest=i + 1, tag=42)
 else:
     files = comm.recv(source=0, tag=42)
 
@@ -69,5 +71,6 @@ if rank is 0:
             global_result[key] += value
 
     print(global_result)
+    print(f'time: {time.time() - time1}')
 else:
     comm.send(local_result, dest=0, tag=42)
