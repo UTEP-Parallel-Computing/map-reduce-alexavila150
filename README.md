@@ -34,3 +34,7 @@ The program shall time how long overall operation takes and how long the word co
 The program shall include any necessary instructions to properly run the program 
 
 The assignment shall be submitted through github 
+
+## Instructions
+To run this program use python3 and run the main.py file with 'python3 main.py' doing this will run the shakespeare files and check for the selected word in the requirements
+If you want to test this place new files in the same directory as main.py and then change the FILES tople in the main.py to include the name of the desired files and if you want to search for other word then you can change the WORDS touple in the main.py file as well
